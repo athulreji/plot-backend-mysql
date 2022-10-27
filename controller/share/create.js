@@ -1,13 +1,16 @@
 const share=require('../../model/share/share')
 
 module.exports.create=async(req,res)=>{
-    const {cost,total,owner,land}=req.body;
+    const {cost,total,owner,land,remaining,location}=req.body;
     try{
         const share1=new share({
             cost,
             total,
             owner,
-            land
+            land,
+            remaining,
+            location
+            
         })
       
         await share1.save();

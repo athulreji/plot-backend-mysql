@@ -20,6 +20,8 @@ const User= new Schema({
   parking:[String],
   share_names:[String],
   share_count:[Number],
+  location:[String],
+  
   portfolio:{
     type:Number,
     default:0
