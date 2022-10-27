@@ -19,6 +19,8 @@ if(user1.share_names.includes(share_name)){
         user1.share_names.splice(user1.share_names.indexOf(share_name),1);
         //remove number from share_count of user1
         user1.share_count.splice(user1.share_count.indexOf(number),1);
+        user1.portfolio-=number*cost;
+        user1.money+=number*cost;
         user1.save();
         return res.status(201).json({
             success:true,

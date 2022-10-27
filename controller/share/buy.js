@@ -11,6 +11,7 @@ module.exports.buy=async(req,res)=>{
         share1.save();
         user1.share_names.push(share1.land);
         user1.share_count.push(number);
+        user1.portfolio+=number*cost;
         user1.save();
         return res.status(201).json({
             success:true,
