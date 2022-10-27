@@ -1,7 +1,7 @@
 const share=require('../../model/share/share')
 const user=require("..//../model/user");
 
-module.exports.buy=async(req,res)=>{
+module.exports.sell=async(req,res)=>{
     const {email,share_id,number}=req.body;
     try{
      const user1=await user.findOne({email:email});

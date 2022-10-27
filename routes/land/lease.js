@@ -9,6 +9,10 @@ const {park_profile}=require("../..//controller/profile/park")
 
 const {hotoptions}=require("../..//controller/land/hotoptions")
 
+const {buy}=require("../..//controller/share/buy")
+const {sell}=require("../..//controller/share/sell")
+const {create}=require("../..//controller/share/create")
+
 
 const router = require("express").Router();
 
@@ -23,5 +27,10 @@ router.get("/lease_profile", lease_profile);
 router.get("/park_profile", park_profile);
 
 router.get("/hotoptions", hotoptions);
+
+router.post("/buy", buy);
+router.post("/sell", sell);
+router.post("/create", create);
+
 
 module.exports = router;
