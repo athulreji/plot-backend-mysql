@@ -2,13 +2,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Share= new Schema({
-    cost:Number,
+    price:Number,
     remaining:Number,
     total:Number,
     owner:String,
     name:String,
     location:String,
     images:[String]
+,
+    description:String,
+    area:Number
 
 });
 
