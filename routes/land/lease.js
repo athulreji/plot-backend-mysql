@@ -7,6 +7,7 @@ const {parking_upload,parking}=require("../..//controller/land/parking_upload")
 const {lease_profile}=require("../..//controller/profile/lease")
 const {park_profile}=require("../..//controller/profile/park")
 
+const {hotoptions}=require("../..//controller/land/hotoptions")
 
 
 const router = require("express").Router();
@@ -20,5 +21,7 @@ router.post("/parking", parking);
 
 router.get("/lease_profile", lease_profile);
 router.get("/park_profile", park_profile);
+
+router.get("/hotoptions", hotoptions);
 
 module.exports = router;
