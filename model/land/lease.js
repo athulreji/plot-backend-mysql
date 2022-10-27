@@ -6,7 +6,7 @@ const lease = new Schema({
     area:Number,
     price:Number,
     location:String,
-    description:String,
+    description:String, 
     owner:String,
     soldto:String,
     isleased:{
