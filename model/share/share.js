@@ -6,7 +6,7 @@ const Share= new Schema({
     remaining:Number,
     total:Number,
     owner:String,
-    land:String,
+    name:String,
     location:String,
     images:[String]
 
