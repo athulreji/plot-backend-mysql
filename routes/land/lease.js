@@ -13,6 +13,8 @@ const {buy}=require("../..//controller/share/buy")
 const {sell}=require("../..//controller/share/sell")
 const {create}=require("../..//controller/share/create")
 
+const {showall}=require("../..//controller/share/showall")
+
 
 const router = require("express").Router();
 
@@ -31,6 +33,9 @@ router.get("/hotoptions", hotoptions);
 router.post("/buy", buy);
 router.post("/sell", sell);
 router.post("/create", create);
+
+
+router.get("/showall", showall);
 
 
 module.exports = router;

@@ -8,6 +8,7 @@ const Share= new Schema({
     owner:String,
     land:String,
     location:String,
+    images:[String]
 
 });
 
