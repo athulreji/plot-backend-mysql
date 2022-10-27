@@ -20,7 +20,10 @@ const User= new Schema({
   parking:[String],
   share_names:[String],
   share_count:[Number],
-  portfolio:Number,
+  portfolio:{
+    type:Number,
+    default:0
+  },
   money:{
     type:Number,
     default:300000
