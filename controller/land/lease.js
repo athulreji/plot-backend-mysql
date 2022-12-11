@@ -12,6 +12,7 @@ module.exports.lease = async (req, res) => {
             data: null,
             });
         }
+    });
         return res.status(201).json({
             success: true,
             message: "Lease created successfully",
