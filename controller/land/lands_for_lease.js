@@ -7,7 +7,7 @@ module.exports.lands_for_lease = async (req, res) => {
             return res.status(200).json({
                 success: true,
                 message: "Lands for lease",
-                data,
+                lands: data,
             });
         })
     } catch (error) {

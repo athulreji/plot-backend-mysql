@@ -1,4 +1,4 @@
-const Lease = require("..//../model/land/lease");
+const connection = require('..//../db')
 
 module.exports.set_lease_true = async (req, res) => {
     const { _id, soldto } = req.body;

@@ -1,4 +1,4 @@
-const Lease = require("..//../model/land/lease");
+const connection = require('..//../db')
 
 module.exports.lease = async (req, res) => {
     const { name, area, perimeter, price, location, description, owner } = req.body;
