@@ -11,9 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const mongoose = require("mongoose");
 
 //const UserSchema= require("./model/Test");
-
-
-
 mongoose  
   .connect("mongodb://adamsy:adamsy@ac-hq5lpkt-shard-00-00.efm3zgf.mongodb.net:27017,ac-hq5lpkt-shard-00-01.efm3zgf.mongodb.net:27017,ac-hq5lpkt-shard-00-02.efm3zgf.mongodb.net:27017/?ssl=true&replicaSet=atlas-hxdcxw-shard-0&authSource=admin&retryWrites=true&w=majority", {
     useNewUrlParser: true,
@@ -22,6 +19,8 @@ mongoose
   .then(() => {
     console.log("DB Connected");
   });
+
+
 
 app.use(cors())
 
