@@ -1,29 +1,31 @@
-const UserSchema = require("..//../model/user");
+const connection = require('..//../db')
 
 module.exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await UserSchema.findOne({ email });
-    if (!user) {                  // if user not found 
-      return res.status(400).json({
-        success: false,
-        message: "User does not exist",
-        data: null,
-      });
-    }
-    const isMatch= user.password==password
-    if (!isMatch) {              // if password is wrong
-      return res.status(400).json({
-        success: false,
-        message: "Password incorrect",
-        data: null,
-      });
-    }
- 
-    return res.status(200).json({
-      success: true,
-      message: "Login successful",
-   user
+    query = `select * from user where email="${email}"`;
+    connection.query(query, function(error, data) {
+      if(data.length == 0) {
+        return res.status(400).json({
+          success: false,
+          message: "User does not exist",
+          data: null,
+        });
+      }
+      else if(data[0].password==password) {
+        return res.status(200).json({
+          success: true,
+          message: "Login successful",
+          data: null
+        });
+      }
+      else {
+        return res.status(400).json({
+          success: false,
+          message: "Password incorrect",
+          data: null,
+        });
+      }
     });
   } catch (error) {
     res.status(500).json({

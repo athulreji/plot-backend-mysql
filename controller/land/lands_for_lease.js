@@ -1,13 +1,15 @@
-const Lease = require("..//../model/land/lease");
+const connection = require('..//../db')
 
 module.exports.lands_for_lease = async (req, res) => {
     try {
-        const lands = await Lease.find({ isleased: false });
-        return res.status(200).json({
-            success: true,
-            message: "Lands for lease",
-            lands,
-        });
+        query = `select * from lease where isleased=false`;
+        connection.query(query, function(error,data) {
+            return res.status(200).json({
+                success: true,
+                message: "Lands for lease",
+                data,
+            });
+        })
     } catch (error) {
         res.status(500).json({
             success: false,

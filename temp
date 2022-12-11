@@ -1,0 +1,2 @@
+create table user(email varchar(100) unique,id integer primary key AUTO_INCREMENT, password varchar(30) not null, name varchar(255), leasedlands varchar(255), parking varchar(255 ), share_names varchar(255), share_count integer, location varchar(255), po
+rtfolio integer default 0, money integer default 300000);
