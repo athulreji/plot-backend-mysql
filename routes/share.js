@@ -1,9 +1,9 @@
-const {buy}=require("../..//controller/share/buy")
-const {sell}=require("../..//controller/share/sell")
-const {create}=require("../..//controller/share/create")
+const {buy}=require("..//controller/share/buy")
+const {sell}=require("..//controller/share/sell")
+const {create}=require("..//controller/share/create")
 
-const {showall}=require("../..//controller/share/showall")
-const {myshares}=require("../..//controller/share/myshares")
+const {showall}=require("..//controller/share/showall")
+const {myshares}=require("..//controller/share/myshares")
 
 
 const router = require("express").Router();

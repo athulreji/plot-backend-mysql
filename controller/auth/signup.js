@@ -20,7 +20,7 @@ module.exports.signup = async (req, res) => {
               return res.status(201).json({
                 success: true,
                 message: "User created successfully",
-                uid: data[0].id,
+                user_id: data[0].id,
               });
           });
           });
