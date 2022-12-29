@@ -1,17 +1,21 @@
-const share=require('../../model/share/share')
+const connection = require('..//../db')
 
 module.exports.showall=async(req,res)=>{
-    try{
-        const lands=await share.find({});
-        return res.status(200).json({
-            success:true,
-            message:"all shares",
-            lands
+    try {
+        console.log("hello");
+        query = `select * from share where total!=booked`;
+        connection.query(query, function(error,data) {
+            return res.status(200).json({
+                success: true,
+                message: "shares",
+                lands: data,
+            });
         })
-
-    }
-    catch(err){
-        console.log(err);
-        res.status(500).json({err})
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            data: null,
+        });
     }
 }

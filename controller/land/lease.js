@@ -12,6 +12,9 @@ module.exports.lease = async (req, res) => {
             data: null,
             });
         }
+        else {
+            query = `update  * from user where id="${data[0].id}"`;
+        }
     });
         return res.status(201).json({
             success: true,

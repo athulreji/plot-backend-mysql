@@ -1,25 +1,17 @@
-const user=require("..//../model/user");
-const lease = require("../../model/land/lease");
+const connection = require('..//../db')
+
 
 module.exports.lease_profile = async (req, res) => {
-    const { email,} = req.body;
+    const { user_id } = req.body;
     try {
-        const user1=await user.findOne({email:email});
-        const leasedlands=user1.leasedlands;
-        console.log(leasedlands);
-        var lands=[];
-
-        for(let i=0;i<leasedlands.length;i++){
-            const land=await lease.findById(leasedlands[i]);
-            lands.push(land);
-        }
-        return res.status(200).json({
-            success: true,
-            message: "leased lands",
-            lands,
-        
+        query = `select * from lease where buyer=${user_id}`;
+        connection.query(query, function(error,data) {
+            return res.status(200).json({
+                success: true,
+                message: "fetched lease data of user",
+                leases: data
+            });
         });
-
     }
     catch (error) {
         console.log(error);

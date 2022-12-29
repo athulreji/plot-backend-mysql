@@ -1,24 +1,27 @@
 const connection = require('..//../db')
 
 module.exports.set_lease_true = async (req, res) => {
-    const { _id, soldto } = req.body;
-    console.log(_id);
+    const { id, owner } = req.body;
+    console.log(id,owner);
     try {
-        const lease = await Lease.findById(_id);
-        console.log(lease);
-        lease.isleased = true;
-        lease.soldto = soldto;
-        await lease.save();
-
-        const user = require("..//../model/user");
-        const user1 = await user.findOne({ email: soldto });
-        user1.leasedlands.push(_id);
-        await user1.save();
-
-        return res.status(201).json({
-            success: true,
-            message: "Lease updated successfully",
-            lease,
+        query = `select * from lease where id =${id}`;
+        connection.query(query, function(error, data) {
+            if(data.length == 0) {
+                return res.status(400).json({
+                    success: false,
+                    message: "lease land not found",
+                    data: null,
+               });
+            }
+            else {
+                query = `update lease set isleased=true, buyer=${owner} where id=${id}`;
+                connection.query(query, function(error,data) {
+                    return res.status(200).json({
+                        success: true,
+                        message: "land is leased"
+                    });
+                });
+            }
         });
     } catch (error) {
         console.log(error);

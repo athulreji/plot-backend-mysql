@@ -15,10 +15,14 @@ module.exports.signup = async (req, res) => {
         else {
           query = `insert into user(email,password,name) values("${email}","${password}","${name}")`;
           connection.query(query, function(error, data) {
-            return res.status(201).json({
-              success: true,
-              message: "User created successfully",
-            });
+            query = `select * from user where email = "${email}"`;
+            connection.query(query, function(error, data) {
+              return res.status(201).json({
+                success: true,
+                message: "User created successfully",
+                uid: data[0].id,
+              });
+          });
           });
         }
       });

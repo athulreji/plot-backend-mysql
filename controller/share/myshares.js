@@ -1,28 +1,34 @@
-const user=require("..//../model/user");
+const connection = require('..//../db')
 
 module.exports.myshares=async(req,res)=>{
-    const {email}=req.body;
-    try{
-        const user1=await user.findOne({email:email});
-        
-        var share_n=[];
-        var share_c=[];
-   for(var i=0;i<user1.share_names.length;i++){
-       share_n.push(user1.share_names[i]);
-       share_c.push(user1.share_count[i]);
+  const {user_id}=req.body;
+  var async = require('async');
+  var shares=[];
+  try{
+    query = `select * from user_shares where user_id=${user_id} and share_count>0`;
+    connection.query(query,function(error,results){
+      if(error) throw err;
 
+      async.eachSeries(results,function(data,callback){
+        query=`select name from share where id=${data['share_id']}`;
+        connection.query(query,function(error,results1){
+          if(error) throw err;
 
-   }
-   
-   return res.status(201).json({
-    success:true,
-    message:"dets",
-    share_n,
-    share_c
-})
-    
-    }
-    catch(err){
-        res.status(500).json({err})
-    }
+          shares.push({
+            "name": results1[0]['name'],
+            "count": data['share_count']
+          })
+          callback();
+        });
+      }, function(err, results) {
+        return res.status(200).json({
+          success: true,
+          shares: shares
+        });
+      });
+    });
+  } catch(err){
+    console.log(err);
+    res.status(500).json({err})
+  }
 }
