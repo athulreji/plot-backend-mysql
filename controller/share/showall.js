@@ -8,7 +8,7 @@ module.exports.showall=async(req,res)=>{
             return res.status(200).json({
                 success: true,
                 message: "shares",
-                lands: data,
+                shares: data,
             });
         })
     } catch (error) {

@@ -1,8 +1,7 @@
 const connection = require('..//../db')
 
 module.exports.set_lease_true = async (req, res) => {
-    const { id, owner } = req.body;
-    console.log(id,owner);
+    const { id, buyer_id } = req.body;
     try {
         query = `select * from lease where id =${id}`;
         connection.query(query, function(error, data) {
@@ -14,7 +13,7 @@ module.exports.set_lease_true = async (req, res) => {
                });
             }
             else {
-                query = `update lease set isleased=true, buyer=${owner} where id=${id}`;
+                query = `update lease set isleased=true, buyer=${buyer_id} where id=${id}`;
                 connection.query(query, function(error,data) {
                     return res.status(200).json({
                         success: true,
