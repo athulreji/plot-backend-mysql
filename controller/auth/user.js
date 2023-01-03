@@ -1,9 +1,9 @@
 const connection = require('..//../db')
 
 module.exports.user=async(req,res)=>{
-    const {email}=req.body;
+    const {id}=req.body;
     try{
-        query = `select * from user where email="${email}"`;
+        query = `select * from user where id="${id}"`;
         connection.query(query, function(error, data) {
             if(data.length == 0) {
                 return res.status(400).json({
