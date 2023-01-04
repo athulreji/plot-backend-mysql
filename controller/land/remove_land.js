@@ -20,7 +20,6 @@ module.exports.lease = async (req, res) => {
             return res.status(201).json({
                 success: true,
                 message: "Lease land has been removed",
-                newLease,
             });
         });
     } catch (error) {
